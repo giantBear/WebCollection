@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
+        <endpoint
+            name="UserManager"
+            implementation="server.UserManager"
+            url-pattern="/UserManager"/>
+        <endpoint
+                name="PatientManager"
+                implementation="server.PatientManager"
+                url-pattern="/PatientManager"/>
+        <endpoint
+            name="ConsultationManager"
+            implementation="server.ConsultationManager"
+            url-pattern="/ConsultationManager"/>
+</endpoints>
