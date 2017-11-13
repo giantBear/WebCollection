@@ -15,6 +15,7 @@ import carEscape.Elements.*;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Scanner; 
 
 class InputWindow {
 
@@ -54,7 +55,8 @@ class InputWindow {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (e.getX() < 300 && e.getY() < 300 && SwingUtilities.isLeftMouseButton(e)) {
+            if (e.getX() < 250 && e.getY() < 250 && SwingUtilities.isLeftMouseButton(e)) {
+                //here to check if overbord
                 if (!button_pressed.equals("none")) {
                     switch (button_pressed) {
                         case "horz2": {
@@ -130,9 +132,10 @@ class InputWindow {
             super.paint(g);
             // draw background grid here
             g.setColor(Color.white);
-            for (int i = 0; i < 7; i++) {
-                g.drawLine(0, i * 50, 300, i * 50);
-                g.drawLine(i * 50, 0, i * 50, 300);
+            for (int i = 0; i <= GUIMain.border; i++) {
+                //girt in map
+                g.drawLine(0, i * 50, 50*GUIMain.border, i * 50);
+                g.drawLine(i * 50, 0, i * 50, 50*GUIMain.border);
             }
         }
     }
@@ -218,7 +221,14 @@ class InputWindow {
 
 public class GUIMain {
 
+    public static int border = 6;
+
     public static void main(String[] args) {
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        System.out.print("\nEnter the border size(default 6): ");
+        GUIMain.border = reader.nextInt();
+        reader.close();
+
         InputWindow iw = new InputWindow();
     }
 }

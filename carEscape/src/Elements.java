@@ -83,7 +83,7 @@ public class Elements {
         BitSet occupancy;          // stores the occupancy-state of each cell of a board : empty (0) OR filled (1)
 
         public BoardMatrix() {     // default constructor
-            occupancy = new BitSet(6 * 6);
+            occupancy = new BitSet(GUIMain.border * GUIMain.border);
         }
 
         public BoardMatrix(BitSet o) {
@@ -91,12 +91,12 @@ public class Elements {
         }
 
         public boolean isEmpty(int x, int y) {
-            return !(occupancy.get(y * 6 + x));
+            return !(occupancy.get(y * GUIMain.border + x));
         }
 
         public void occupy(int x, int y) {
-            if (x < 6 && y < 6) {
-                occupancy.set(y * 6 + x, true);
+            if (x < GUIMain.border && y < GUIMain.border) {
+                occupancy.set(y * GUIMain.border + x, true);
             } else {
                 System.err.println("Block is out of bounds.\nExiting program.");
                 System.exit(1);
@@ -104,13 +104,13 @@ public class Elements {
         }
 
         public BitSet row(int r) {
-            return occupancy.get(r * 6 + 0, r * 6 + 6);
+            return occupancy.get(r * GUIMain.border + 0, r * GUIMain.border + GUIMain.border);
         }
 
         public BitSet column(int c) {
-            BitSet col = new BitSet(6);
-            for (int i = 0; i < 6; i++) {
-                col.set(i, occupancy.get(i * 6 + c));
+            BitSet col = new BitSet(GUIMain.border);
+            for (int i = 0; i < GUIMain.border; i++) {
+                col.set(i, occupancy.get(i * GUIMain.border + c));
             }
             return col;
         }
